@@ -92,6 +92,7 @@ void mostrarNumero (int u1, int u2, int d1, int d2){
 
 
 }
+//version MIa
 
 
 
