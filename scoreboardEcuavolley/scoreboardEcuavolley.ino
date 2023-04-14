@@ -88,11 +88,20 @@ void cifras (int pt1, int pt2){
 
 
 void mostrarNumero (int u1, int u2, int d1, int d2){
-  
-
-
+  int valores [4] = {d1,u1,d2,u2};
+  int l=0;
+  for (int i= 14; i < 18;i++){
+    digitalWrite(i, HIGH);
+    int j = 0;
+      for(int k=7; k< 14; k++){
+      digitalWrite(k, bitRead(numbersDisplayAnode[valores[l]-1],k));
+      j++;
+      }
+    l++;
+    delay(1);
+    digitalWrite(i,LOW);
+  }
 }
-//version MIa
 
 
 
