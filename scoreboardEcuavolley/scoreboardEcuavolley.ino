@@ -1,3 +1,35 @@
+#define TIPODISPLAY 1 //1 anodo, 2 catodo
+
+
+#if TIPODISPLAY == 1
+//Display Anodo Común
+  const byte numbersDisplay[10] = {0b1000000,     //0
+                            0b1111001,          //1
+                            0b0100100,          //2
+                            0b0110000,          //3
+                            0b0011001,          //4
+                            0b0010010,          //5
+                            0b0000010,          //6
+                            0b1111000,          //7
+                            0b0000000,          //8
+                            0b0010000};         //9
+
+#elif TIPODISPLAY == 2
+  const byte numbersDisplay[10] = {0b0111111,     //0
+                            0b0000110,          //1
+                            0b1011011,          //2
+                            0b1001111,          //3
+                            0b1100110,          //4
+                            0b1101101,          //5
+                            0b1111101,          //6
+                            0b0000111,          //7
+                            0b1111111,          //8
+                            0b1101111};         //9  
+#else 
+
+  #define TIPODISPLAY  1
+  
+#endif
 //Declaracion de pines botones//
 const int t1up = 2;
 const int t1down = 3;
@@ -27,16 +59,6 @@ const int LT2 = 19;
 
 //Declaracion de numeros en 7 segmentos
 
-const byte numbersDisplayAnode[10] = {0b1000000,     //0
-                            0b1111001,          //1
-                            0b0100100,          //2
-                            0b0110000,          //3
-                            0b0011001,          //4
-                            0b0010010,          //5
-                            0b0000010,          //6
-                            0b1111000,          //7
-                            0b0000000,          //8
-                            0b0010000};         //9
 
 //Variables dinamicas
 int team1 = 0;
@@ -55,11 +77,13 @@ void setup() {
     for(int i = 2;i<7;i++){
       pinMode( i , INPUT);
     }
+    
+    
 }
 
 void loop() {
   
-    cifras(35, 10);
+    cifras(99, 10);
 
 
 }
@@ -94,7 +118,7 @@ void mostrarNumero (int u1, int u2, int d1, int d2){
     digitalWrite(i, HIGH);
     int j = 0;
       for(int k=7; k< 14; k++){
-      digitalWrite(k, bitRead(numbersDisplayAnode[valores[l]],j));
+      digitalWrite(k, bitRead(numbersDisplay[valores[l]],j));
       j++;
       }
     l++;
