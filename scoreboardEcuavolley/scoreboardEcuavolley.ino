@@ -59,7 +59,7 @@ void setup() {
 
 void loop() {
   
-
+    cifras(35, 10);
 
 
 }
@@ -94,7 +94,7 @@ void mostrarNumero (int u1, int u2, int d1, int d2){
     digitalWrite(i, HIGH);
     int j = 0;
       for(int k=7; k< 14; k++){
-      digitalWrite(k, bitRead(numbersDisplayAnode[valores[l]-1],k));
+      digitalWrite(k, bitRead(numbersDisplayAnode[valores[l]],j));
       j++;
       }
     l++;
