@@ -65,7 +65,11 @@ int team1 = 0;
 int team2 = 0;
 int pt1 = 0;
 int pt2 = 0;
-
+//punteros variables dinamicas 
+int * pteam1 = &team1;
+int * pteam2 = &team2;
+int * ppt1 = &pt1;
+int * ppt2 = &pt1;
 
 void setup() {
     //Declaracion pines de salida
@@ -82,8 +86,9 @@ void setup() {
 }
 
 void loop() {
-  
-    cifras(99, 10);
+  cifras(57,23);
+  //contarPuntos(pteam1, pteam2, ppt1, ppt2);
+    
 
 
 }
@@ -115,6 +120,7 @@ void mostrarNumero (int u1, int u2, int d1, int d2){
   int valores [4] = {d1,u1,d2,u2};
   int l=0;
   for (int i= 14; i < 18;i++){
+    if(TIPODISPLAY == 1){
     digitalWrite(i, HIGH);
     int j = 0;
       for(int k=7; k< 14; k++){
@@ -124,10 +130,39 @@ void mostrarNumero (int u1, int u2, int d1, int d2){
     l++;
     delay(1);
     digitalWrite(i,LOW);
+    }else {
+      digitalWrite(i, LOW);
+    int j = 0;
+      for(int k=7; k< 14; k++){
+      digitalWrite(k, bitRead(numbersDisplay[valores[l]],j));
+      j++;
+      }
+    l++;
+    delay(1);
+    digitalWrite(i,HIGH);
+    }
   }
 }
+//void contarPuntos(int *pteam1, int*pteam2, int *ppt1, int*ppt2){
+  //if (validarBoton(t1up)==1 && *ppt1==0){
+   // *ppt1 = 1;
+  //}else if(validarBoton(t1up)==1 && *ppt1==1){
+  //  *pteam1 = *pteam + 1;
+  //}
 
+//}
+void validarBoton(int pin){
+  if(digitalRead(pin)==HIGH){
+    delay(50);
+    if(digitalRead(pin)==HIGH){
+      
+      return 1;
+    }else{
+      return 0;
+    }
 
+  }
+}
 
 
 
