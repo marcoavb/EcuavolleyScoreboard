@@ -143,12 +143,17 @@ void mostrarNumero (int u1, int u2, int d1, int d2){
     }
   }
 }
-void contarPuntos(int *pteam1, int*pteam2, int *ppt1, int*ppt2){
+void contarPuntos(int *pteam1, int *pteam2, int *ppt1, int*ppt2){
+  //Code for point counting of team 1
   if (*ppt1==0 && validarBoton(t1up)==1){
     *ppt1 = 1;
+    *ppt2 = 0;
   }else if( *ppt1==1 && validarBoton(t1up) == 1 ){
     *pteam1 = *pteam1 + 1;
+  }else if (validarBoton(t1down)==1) {
+    *pteam1 = *pteam1 - 1;
   }
+
 
 }
 int validarBoton(int pin){
