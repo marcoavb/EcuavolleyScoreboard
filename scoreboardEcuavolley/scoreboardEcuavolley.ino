@@ -61,8 +61,8 @@ const int LT2 = 19;
 
 
 //Variables dinamicas
-int team1 = 0;
-int team2 = 0;
+unsigned int team1 = 0;
+unsigned int team2 = 0;
 int pt1 = 0;
 int pt2 = 0;
 //punteros variables dinamicas 
