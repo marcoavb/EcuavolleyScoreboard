@@ -1,4 +1,5 @@
-#define TIPODISPLAY 1 //1 anodo, 2 catodo
+
+#define TIPODISPLAY 2 //1 anodo, 2 catodo
 
 
 #if TIPODISPLAY == 1
@@ -63,7 +64,7 @@ const int LT2 = 19;
 //Variables dinamicas
 int team1 = 0;
 int team2 = 0;
-int pt1 = 0;
+int pt1 = 1;
 int pt2 = 0;
 //punteros variables dinamicas 
 int * pteam1 = &team1;
@@ -154,7 +155,10 @@ void contarPuntos(int *pteam1, int *pteam2, int *ppt1, int *ppt2){
     
   } 
   else if (validarBoton(t1down)==1) {
-    *pteam1 = *pteam1 - 1;
+      if(*pteam1>0){
+      *pteam1 = *pteam1 - 1;
+    }
+    
   }
 
 //Contar puntos team 2
@@ -165,20 +169,24 @@ void contarPuntos(int *pteam1, int *pteam2, int *ppt1, int *ppt2){
     *pteam2 = *pteam2 + 1;
 
   }else if(validarBoton(t2down)==1){
-    *pteam2 = *pteam2 - 1;
-  
+    if(*pteam2>0){
+      *pteam2 = *pteam2 - 1;
+    }
+    
   }
 
   if (validarBoton(reset) == 1){
-    *ppt1 = 0;
+    *ppt1 = 1;
     *ppt2 = 0;
     *pteam1 = 0;
     *pteam2 = 0;
     }
-  if (*ppt1 == 1){
-    digitalWrite(LT1,HIGH);
+  if (*ppt2 == 1){
+     digitalWrite(LT1,LOW);
+      digitalWrite(LT2,HIGH);
     }else{
-    digitalWrite(LT2,HIGH);
+      digitalWrite(LT1,HIGH);
+      digitalWrite(LT2,LOW);
     }
   }
 
