@@ -82,7 +82,6 @@ void setup() {
       pinMode( i , INPUT);
     }
     
-    Serial.begin(9600);
 }
 
 void loop() {
@@ -90,7 +89,7 @@ void loop() {
 
   cifras(*pteam1,*pteam2);
   contarPuntos(pteam1, pteam2, ppt1, ppt2);
-    
+  
 
 
 }
@@ -152,7 +151,7 @@ void contarPuntos(int *pteam1, int *pteam2, int *ppt1, int *ppt2){
     * ppt2 = 0;
   }else if( *ppt1 == 1 && validarBoton(t1up) == 1){
     *pteam1 = *pteam1 + 1;
-    Serial.println(*pteam1);
+    
   } 
   else if (validarBoton(t1down)==1) {
     *pteam1 = *pteam1 - 1;
@@ -170,18 +169,18 @@ void contarPuntos(int *pteam1, int *pteam2, int *ppt1, int *ppt2){
   
   }
 
-if (validarBoton(reset) == 1){
-  *ppt1 = 0;
-  *ppt2 = 0;
-  *pteam1 = 0;
-  *pteam2 = 0;
+  if (validarBoton(reset) == 1){
+    *ppt1 = 0;
+    *ppt2 = 0;
+    *pteam1 = 0;
+    *pteam2 = 0;
+    }
+  if (*ppt1 == 1){
+    digitalWrite(LT1,HIGH);
+    }else{
+    digitalWrite(LT2,HIGH);
+    }
   }
-if (*ppt1 = 1){
-  digitalWrite(LT1,HIGH);
-  }else{
-  digitalWrite(LT2,HIGH);
-  }
-}
 
 int validarBoton(int pin){
   if(digitalRead(pin)==HIGH){
