@@ -155,7 +155,21 @@ void contarPuntos(int *pteam1, int *pteam2, int *ppt1, int*ppt2){
   }
 
 
+
+//Contar puntos team 2
+if (*ppt2==0 && validarBoton(t2up)==1){
+    *ppt2 = 1;
+  }else if( *ppt2==1 && validarBoton(t2up) == 1 ){
+    *pteam2 = *pteam2 + 1;
+  }else if(*ppt2==0 && validarBoton(t2down)==1){
+    *pteam2 = *pteam2 - 1;}
+    else if(*ppt2==1 && validarBoton(t2down) == 1 ){
+      *pteam2 = *pteam2 - 1;}
+
 }
+
+
+  
 int validarBoton(int pin){
   if(digitalRead(pin)==HIGH){
     delay(30);
