@@ -61,15 +61,15 @@ const int LT2 = 19;
 
 
 //Variables dinamicas
-unsigned int team1 = 0;
-unsigned int team2 = 0;
+int team1 = 0;
+int team2 = 0;
 int pt1 = 0;
 int pt2 = 0;
 //punteros variables dinamicas 
 int * pteam1 = &team1;
 int * pteam2 = &team2;
 int * ppt1 = &pt1;
-int * ppt2 = &pt1;
+int * ppt2 = &pt2;
 
 void setup() {
     //Declaracion pines de salida
@@ -82,10 +82,12 @@ void setup() {
       pinMode( i , INPUT);
     }
     
-    
+    Serial.begin(9600);
 }
 
 void loop() {
+
+
   cifras(*pteam1,*pteam2);
   contarPuntos(pteam1, pteam2, ppt1, ppt2);
     
@@ -143,30 +145,33 @@ void mostrarNumero (int u1, int u2, int d1, int d2){
     }
   }
 }
-void contarPuntos(int *pteam1, int *pteam2, int *ppt1, int*ppt2){
+void contarPuntos(int *pteam1, int *pteam2, int *ppt1, int *ppt2){
   //Code for point counting of team 1
-  if (*ppt1==0 && validarBoton(t1up)==1){
-    *ppt1 = 1;
-    *ppt2 = 0;
-  }else if( *ppt1==1 && validarBoton(t1up) == 1 ){
+  if (*ppt1 == 0 && validarBoton(t1up) == 1){
+    * ppt1 = 1;
+    * ppt2 = 0;
+  }else if( *ppt1 == 1 && validarBoton(t1up) == 1){
     *pteam1 = *pteam1 + 1;
-  }else if (validarBoton(t1down)==1) {
+    Serial.println(*pteam1);
+  } 
+  else if (validarBoton(t1down)==1) {
     *pteam1 = *pteam1 - 1;
   }
 
 //Contar puntos team 2
-if (*ppt2==0 && validarBoton(t2up)==1){
+ if (*ppt2==0 && validarBoton(t2up)==1){
     *ppt2 = 1;
     *ppt1 = 0;
-  }else if( validarBoton(t2up) == 1 ){
+  }else if(*ppt2==1 && validarBoton(t2up) == 1 ){
     *pteam2 = *pteam2 + 1;
+
   }else if(validarBoton(t2down)==1){
-    *pteam2 = *pteam2 - 1;}
-    else if(validarBoton(t2down) == 1 ){
-      *pteam2 = *pteam2 - 1;}
+    *pteam2 = *pteam2 - 1;
+  
+  }
 
 if (validarBoton(reset) == 1){
-  *ppt1 = 1;
+  *ppt1 = 0;
   *ppt2 = 0;
   *pteam1 = 0;
   *pteam2 = 0;
@@ -177,6 +182,7 @@ if (*ppt1 = 1){
   digitalWrite(LT2,HIGH);
   }
 }
+
 int validarBoton(int pin){
   if(digitalRead(pin)==HIGH){
     delay(30);
@@ -185,8 +191,11 @@ int validarBoton(int pin){
 
       }while(digitalRead(pin)==HIGH);
       return 1;
+
     }else{
+
       return 0;
+
     }
 
   }
