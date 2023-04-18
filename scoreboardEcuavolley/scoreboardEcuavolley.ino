@@ -86,8 +86,8 @@ void setup() {
 }
 
 void loop() {
-  cifras(57,23);
-  //contarPuntos(pteam1, pteam2, ppt1, ppt2);
+  cifras(*pteam1,*pteam2);
+  contarPuntos(pteam1, pteam2, ppt1, ppt2);
     
 
 
@@ -143,19 +143,21 @@ void mostrarNumero (int u1, int u2, int d1, int d2){
     }
   }
 }
-//void contarPuntos(int *pteam1, int*pteam2, int *ppt1, int*ppt2){
-  //if (validarBoton(t1up)==1 && *ppt1==0){
-   // *ppt1 = 1;
-  //}else if(validarBoton(t1up)==1 && *ppt1==1){
-  //  *pteam1 = *pteam + 1;
-  //}
+void contarPuntos(int *pteam1, int*pteam2, int *ppt1, int*ppt2){
+  if (*ppt1==0 && validarBoton(t1up)==1){
+    *ppt1 = 1;
+  }else if( *ppt1==1 && validarBoton(t1up) == 1 ){
+    *pteam1 = *pteam1 + 1;
+  }
 
-//}
-void validarBoton(int pin){
+}
+int validarBoton(int pin){
   if(digitalRead(pin)==HIGH){
-    delay(50);
+    delay(30);
     if(digitalRead(pin)==HIGH){
-      
+      do{
+
+      }while(digitalRead(pin)==HIGH);
       return 1;
     }else{
       return 0;
