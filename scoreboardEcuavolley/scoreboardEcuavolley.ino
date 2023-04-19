@@ -64,7 +64,7 @@ const int LT2 = 19;
 //Variables dinamicas
 int team1 = 0;
 int team2 = 0;
-int pt1 = 1;
+int pt1 = 0;
 int pt2 = 0;
 //punteros variables dinamicas 
 int * pteam1 = &team1;
@@ -176,7 +176,7 @@ void contarPuntos(int *pteam1, int *pteam2, int *ppt1, int *ppt2){
   }
 
   if (validarBoton(reset) == 1){
-    *ppt1 = 1;
+    *ppt1 = 0;
     *ppt2 = 0;
     *pteam1 = 0;
     *pteam2 = 0;
@@ -184,10 +184,11 @@ void contarPuntos(int *pteam1, int *pteam2, int *ppt1, int *ppt2){
   if (*ppt2 == 1){
      digitalWrite(LT1,LOW);
       digitalWrite(LT2,HIGH);
-    }else{
+  }else if (*ppt1 == 1) {
       digitalWrite(LT1,HIGH);
       digitalWrite(LT2,LOW);
-    }
+  }else{digitalWrite(LT1,LOW);
+      digitalWrite(LT2,LOW);}
   }
 
 int validarBoton(int pin){
